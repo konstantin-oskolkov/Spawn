@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private float _wait = 2f;
+    [SerializeField] private Enemy _enemy;
     [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private float _secondsBetweenSpawn;
+   
+   private void Start()
+   {
+      StartCoroutine(DelaySpawn());
+   }
 
-    private float _elapsedTime = 0;
+   private IEnumerator DelaySpawn()
+   {
+      while (!Input.GetKey(KeyCode.Space))
+      {
+         int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
+         Instantiate(_enemy, _spawnPoints[spawnPointNumber]);
 
-    private void Update()
-    {
-        _elapsedTime += Time.deltaTime;
-
-        if(_elapsedTime >= _secondsBetweenSpawn)
-        {
-            _elapsedTime = 0;
-
-            int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
-            Instantiate(_enemyPrefab, _spawnPoints[spawnPointNumber]);
-        }
-    }
+         yield return new WaitForSeconds(_wait);
+      }
+      yield break;
+   }
 }
 

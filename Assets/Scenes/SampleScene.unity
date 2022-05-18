@@ -531,9 +531,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d0c9bec689bf740ac6728cd9f22384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 5998606466360422149, guid: 7d4b0b6b26b79484594f92972af0fadc, type: 3}
+  _wait: 2
+  _enemy: {fileID: 0}
   _spawnPoints:
   - {fileID: 7104209}
   - {fileID: 338580854}
   - {fileID: 1607853028}
-  _secondsBetweenSpawn: 2
